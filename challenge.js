@@ -76,9 +76,10 @@ const commentDiv = document.getElementById('list')
 const formSubmit = document.getElementById('comment-form')
 
 formSubmit.addEventListener('submit', function(event) {
-  event.preventDefault()
+  event.preventDefault();
   const comment = formSubmit.comment.value;
   const commentP = document.createElement('p');
   commentP.innerText = comment;
   commentDiv.appendChild(commentP);
+  formSubmit.reset();
 })

@@ -10,7 +10,7 @@ function incrementSeconds() {
 const minusButton = document.getElementById('-');
 const plusButton = document.getElementById('+');
 
-minusButton.addEventListener('click', function(event) {
+minusButton.addEventListener('click', function (event) {
   let newCount = parseInt(counter.innerText);
   newCount--;
   counter.innerText = newCount;
@@ -20,35 +20,22 @@ plusButton.addEventListener('click', incrementSeconds);
 
 const likeButton = document.getElementById('<3');
 
-let likesObj = {};
-let likeCount = 0;
-likeButton.addEventListener('click', function(event) {
+
+likeButton.addEventListener('click', function (event) {
   let currentCounter = counter.innerText;
-  
-  // let li = document.getElementById(`li.id = '${currentCounter}'`)
   let li = document.getElementById(`${currentCounter}`);
-  
-  console.log(li)
-  
+
   if (!li) {
-    // (currentCounter !== li.id) {
-      likesObj[currentCounter] = 1;
-      li = document.createElement("li");
-      li.id = parseInt(currentCounter);
+    li = document.createElement("li");
+    li.id = parseInt(currentCounter);
     let statement = `${currentCounter} has been liked 1 time`;
-    
     li.innerText = statement;
     const ul = document.getElementsByClassName('likes')[0];
     ul.appendChild(li);
   } else {
-      likesObj[currentCounter] = likesObj[currentCounter] + 1;
-    
-    
-    
-      // likeCount++;
-      let statement = `${currentCounter} has been liked ${parseInt(likesObj[currentCounter])} times`;
-      li.innerText = statement;
-
+    let likes = li.innerText.split(' ')[4];
+    let statement = `${currentCounter} has been liked ${~ + 1} times`;
+    li.innerText = statement;
   }
 
 });

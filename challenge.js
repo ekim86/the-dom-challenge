@@ -28,13 +28,13 @@ likeButton.addEventListener('click', function (event) {
   if (!li) {
     li = document.createElement("li");
     li.id = parseInt(currentCounter);
-    let statement = `${currentCounter} has been liked 1 time`;
+    const statement = `${currentCounter} has been liked 1 time`;
     li.innerText = statement;
     const ul = document.getElementsByClassName('likes')[0];
     ul.appendChild(li);
   } else {
     let likes = li.innerText.split(' ')[4];
-    let statement = `${currentCounter} has been liked ${~ + 1} times`;
+    const statement = `${currentCounter} has been liked ${parseInt(likes) + 1} times`;
     li.innerText = statement;
   }
 

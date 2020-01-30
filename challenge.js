@@ -1,4 +1,4 @@
-setInterval(incrementSeconds, 1000);
+let timer = setInterval(incrementSeconds, 1000);
 const counter = document.getElementById('counter');
 
 function incrementSeconds() {
@@ -40,22 +40,45 @@ likeButton.addEventListener('click', function (event) {
 
 });
 
+const pauseButton = document.getElementById('pause');
+const submitButton = document.getElementById('submit');
+const resumeButton = document.createElement('button');
+resumeButton.innerText = "Resume";
 
+pauseButton.addEventListener('click', function(event) {
+  document.querySelectorAll('button').forEach (function(button){
+    if (button.id !== 'pause')
+    button.disabled = true;
+  });
+  clearInterval(timer);
+  // pauseButton.innerText = "Resume";
 
-// 3. As a user, i can like an individual number
-//  of the counter. I should see the appropriate 
-// number of likes associated with that particular number
+  document.body.replaceChild(resumeButton, pauseButton)
+  // minusButton.disabled = true;
+  // plusButton.disabled = true;
+  // likeButton.disabled = true;  
+  // submitButton.disabled = true; 
+ 
+});
 
-// eventlistener on like button
-// take the value of the counter at that time'
-// create an li 
-// li inner text will be the sentence
-// record a way to see how many times its been clicked
-// append to ul
+resumeButton.addEventListener('click', function(event) {
+  document.querySelectorAll('button').forEach (function(button){
+    button.disabled = false;
+  });
+  timer = setInterval(incrementSeconds, 1000);
+  // pauseButton.innerText = "Resume";
 
-// 4. As a user I can pause the game, which should
-//  disable all buttons except the pause button, which 
-// should now show the text 'resume'
+  document.body.replaceChild(pauseButton, resumeButton)
+});
 
-// 5. As a user I can leave comments on my gameplay, 
-// such as "Wow, what a fun game this is"
+const commentDiv = document.getElementById('list')
+
+const formSubmit = document.getElementById('comment-form')
+
+formSubmit.addEventListener('submit', function(event) {
+  event.preventDefault()
+  const comment = formSubmit.comment.value;
+  const commentP = document.createElement('p');
+  commentP.innerText = comment;
+  commentDiv.appendChild(commentP);
+})
